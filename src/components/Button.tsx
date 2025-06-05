@@ -1,9 +1,21 @@
 type ButtonProp = {
-  handleClick: (e : React.MouseEvent<HTMLButtonElement>) => void;
+  handleClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  count: number;
 };
 
 const Button = (prop: ButtonProp) => {
-  return <button onClick={prop.handleClick}>Click</button>;
+  return (
+    <div>
+        <p>count : {prop.count}</p>
+      <button
+        onClick={prop.handleClick}
+        style={{ background: "red", color: "white" }}
+      >
+        Click
+      </button>
+      
+    </div>
+  );
 };
 
 export default Button;

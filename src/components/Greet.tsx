@@ -1,15 +1,4 @@
-type person = {
-  fName: string
-  lName: string
-}
-type GreetProp = {
-  name?: string;
-  age: number;
-  islogin: boolean
-  person: person
-  list?: person[]
-  status: 'loading' | 'success' | 'error'
-};
+import { type GreetProp } from "./types"
 
 const Greet = (prop: GreetProp) => {
   let message 
@@ -31,7 +20,7 @@ const Greet = (prop: GreetProp) => {
       <div>
         <h4>props pass via array</h4>
         <p>{prop.list?.map((person, key) => (
-          <li key={key}>  Name {key}: {person?.fName} {person.lName} </li>
+          <li key={key}>  Name {key}: {person.fName} {person.lName} </li>
         ))}</p>
       </div>
       <div>

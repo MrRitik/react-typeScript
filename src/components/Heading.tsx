@@ -4,7 +4,7 @@ type HeadingProps = {
 
 const Heading = (Head: HeadingProps) => {
   return (
-    <div>
+    <div style={{color: 'red'}}>
       <h1>{Head.children}</h1>
     </div>
   );
