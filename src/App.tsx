@@ -1,61 +1,60 @@
 import { useState } from "react";
+import Home from "./components/Home";
+import { ThemeContextType, UserContext } from "./hooks/UseContext";
 import "./App.css";
-import Annoucement from "./components/Annoucement";
-import Button from "./components/Button";
-import Container from "./components/Container";
-import Greet from "./components/Greet";
-import Heading from "./components/Heading";
-import User from "./components/User";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ChildA from "./components/ChildA";
+import UserDetails from "./components/UserDetails";
+import Layout from "./components/Layout";
+import ClassFun from "./components/ClassFun";
 
-function App() {
-  const [count, setCount] = useState(0)
-  const personName = {
-    fName: "Ritik",
-    lName: "Singh",
+const App = () => {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  const toggle = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  const personList = [
+  const Userdata = {
+    name: "Ritik",
+    isLoggedIn: true,
+  };
+
+  const ThemeData = {
+    theme,
+    toggle,
+  };
+
+  const router = createBrowserRouter([
     {
-      fName: "Ritik",
-      lName: "Singh",
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "context",
+          element: <ChildA />,
+        },
+        {
+          path: "class",
+          element: <ClassFun text="This is class funcation" />,
+        },
+        { path: "user/:id", element: <UserDetails /> },
+      ],
     },
-    {
-      fName: "Sahil",
-      lName: "Singh",
-    },
-  ];
-  const handleClick = () => {
-    setCount((count) => count + 1)
-  }
+  ]);
   return (
     <>
-      <Greet
-        name="Ritik"
-        age={24}
-        islogin={false}
-        person={personName}
-        list={personList}
-        status="error"
-      />
-      <Heading>This is Heading</Heading>
-      <Annoucement>
-        <Heading>This is an Announcemet</Heading>
-      </Annoucement>
-      <Button handleClick={handleClick}
-      count={count}
-      />
-      <Container
-        styles={{
-          border: "5px blue solid",
-          background: "white",
-          color: "red",
-          padding: "10px 0",
-          marginTop: "15px",
-        }}
-      />
-        <User />
+      <UserContext.Provider value={Userdata}>
+        <ThemeContextType.Provider value={ThemeData}>
+          <RouterProvider router={router} />
+        </ThemeContextType.Provider>
+      </UserContext.Provider>
     </>
   );
-}
+};
 
 export default App;
