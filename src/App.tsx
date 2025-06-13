@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Home from "./components/Home";
+import Home from "./Pages/Home";
 import { ThemeContextType, UserContext } from "./hooks/UseContext";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -7,6 +7,10 @@ import ChildA from "./components/ChildA";
 import UserDetails from "./components/UserDetails";
 import Layout from "./components/Layout";
 import ClassFun from "./components/ClassFun";
+import LifeCycle from "./components/LifeStyle";
+import Event from "./components/Event";
+import Form from "./Pages/Form";
+import Hook from "./Pages/Hook";
 
 const App = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
@@ -41,6 +45,22 @@ const App = () => {
         {
           path: "class",
           element: <ClassFun text="This is class funcation" />,
+        },
+        {
+          path: "life",
+          element: <LifeCycle name="Sahil" />,
+        },
+        {
+          path: "event",
+          element: <Event />,
+        },
+        {
+          path: "Form",
+          element: <Form />,
+        },
+        {
+          path: "hook",
+          element: <Hook />,
         },
         { path: "user/:id", element: <UserDetails /> },
       ],

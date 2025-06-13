@@ -1,11 +1,9 @@
 import { Component, type ReactNode } from "react";
 
-// Define the props type
 interface ClassFunProps {
   text: string;
 }
 
-// Define the state type
 interface ClassFunState {
   count: number;
 }

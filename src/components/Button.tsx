@@ -3,7 +3,7 @@ type ButtonProp = {
   count: number;
 };
 
-const Button = (prop: ButtonProp) => {
+const CustomButton = (prop: ButtonProp) => {
   return (
     <div>
         <p>count : {prop.count}</p>
@@ -18,4 +18,4 @@ const Button = (prop: ButtonProp) => {
   );
 };
 
-export default Button;
+export default CustomButton;
